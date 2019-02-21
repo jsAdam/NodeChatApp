@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="google-signin-client_id" content="101710762238-tmpbfj9pc1aprpulec7s79396k099hd2.apps.googleusercontent.com">
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="./lib/css/emoji.css" rel="stylesheet">
+        
+        <title>Chat</title>
+        
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+                line-height: 1.5;
+                color: blue;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+                height: 100%;
+            }
+            input:hover{
+                box-shadow: 0px 0px 15px -4px blue;
+            }
+            
+            
+            #profile{
+                width: 50px;
+            }
+            #header{
+                padding: 10px;
+                height: 60px;
+            }
+            #header h1{
+                float: left;
+                margin: 0;
+                padding: 0;
+            }
+            #profile{
+                float: right;
+                border-radius: 30px;
+            }
+            
+            .button1{
+                width: 200px;
+                height: 50px;
+                border: none;
+                color: white;
+                background-color: blue;
+            }
+            @keyframes button-spin{
+                0% {
+                    transform: rotate(0deg);
+                }
+                25%{
+                    transform: rotate(20deg);
+                }
+                75%{
+                    transform: rotate(-20deg);
+                }
+            }
+            
+            .button1:hover{
+                cursor: pointer;
+                animation-name: button-spin;
+                animation-duration: 1s;
+            }
+            
+            #mid-area{
+                position: relative;
+                width: 100%;
+                height: 700px;
+            }
+            #login{
+                width: 200px;
+                height: 255px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin: -125px 0 0 -100px;
+            }
+            #login input{
+                width: 200px;
+                padding: 10px 10px;
+                margin: 10px 0 30px 0;
+                box-sizing: border-box;
+                border: 2px solid blue;
+                border-radius: 10px;
+            }
+            
+            
+            #logged-area{
+                padding: 0px;
+                margin: 0px;
+                margin-bottom: 150px;
+            }
+            #chat-form{
+                width: 500px;
+                height: 100px;
+                margin: auto;
+            }
+            #chat-form input{
+                width: 450px;
+                padding: 10px 15px;
+                box-sizing: border-box;
+                border: 2px solid blue;
+                border-radius: 10px;
+            }
+            
+            #send{
+                margin: 0px 0 0 15px;
+                font-size: 25px;
+            }
+            #send:hover{
+                cursor: pointer;
+                color: cadetblue;
+            }
+            
+            /* chat area */
+            #chats{
+                width: 1000px;
+                margin: auto;
+            }
+            .chat, .log-user-chat{
+                width: 600px;
+                background-color: white;
+                padding: 0px;
+                border-radius: 20px;
+                padding: 15px 25px;
+                box-sizing: border-box;
+                margin: 20px 0;
+                display: inline-block;
+            }
+            .chat p, .log-user-chat p{
+                width: 600px;
+                padding: 0px;
+                margin: 0px;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
+            .chat h5, .log-user-chat h5{
+                padding: 0px;
+                margin: 0px;
+                color: darkblue;
+            }
+            
+            .log-user-chat{
+                float: right;
+                text-align: right;
+                background-color: antiquewhite;
+            }
+            .log-user-chat p{
+                float: right;
+            }
+            
+            @media (max-width: 750px){
+                #mid-area{
+                    height: 400px;
+                }
+                
+                #chat-form{
+                    position: fixed;
+                    width: 100%;
+                    height: 100px;
+                    margin: 0;
+                    padding: 0;
+                    margin-left: 2%;
+                    box-sizing: border-box;
+                    bottom: -40px;
+                }
+                #chat-form input{
+                    margin: 0px;
+                    width: 90%;
+                }
+
+                #send{
+                    width: 5%;
+                    margin: 0px;
+                    padding: 0px;
+                    font-size: 100%
+                }
+                
+                #blank{
+                    width: 100%;
+                    border: 1px solid black;
+                    margin: 100px 0px;
+                }
+                #chats{
+                    width: 100%;
+                    margin: 0px;
+                    margin-bottom: 100px;
+                }
+                .chat, .log-user-chat{
+                    width: 80%;
+                    margin: 7px 5%;
+                    padding: 10px;
+                }
+                .chat p, .log-user-chat p{
+                    width: 100%;
+                    margin: 0px;
+                }
+                .chat h5, .log-user-chat h5{
+                    padding: 0px;
+                    margin: 0px;
+                    color: darkblue;
+                }
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div id="header">
+            <h1>Chat Time!</h1>
+            <img id="profile" src="place-holder.png">
+        </div>
+        
+        <div id="mid-area">
+            <div id="login">
+                <form id="login-form" autocomplete="off">
+                    <label for="name"><strong>Name:</strong></label>
+                    <input type="text" name="name" id="login-name" required="required">
+                    <label for="name"><strong>Special Word:</strong></label>
+                    <input type="text" name="name" id="login-word" required="required">
+                    <button type="submit" class="button1">Log In</button>
+                </form>
+            </div>
+        </div>
+        
+        <div id="logged-area">
+            <form id="chat-form">
+                <input type="text" name="chat" id="chat-form-input">
+                <i id="send" class="fa fa-paper-plane"></i>
+            </form>
+
+            <div id="chats">
+            </div>
+        </div>
+        
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="./lib/js/config.js"></script>
+        <script src="./lib/js/util.js"></script>
+        <script src="./lib/js/jquery.emojiarea.js"></script>
+        <script src="./lib/js/emoji-picker.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
